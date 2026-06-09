@@ -2,7 +2,7 @@
 
 > Executive-grade workforce analytics dashboard tracking AI hiring signals, funding intelligence, geo expansion scoring, and ML-powered startup success prediction across 22 leading AI companies.
 
-**Portfolio project by Shreya Vyas** · [Live Demo →](https://shreya-vyas.github.io/FundingAI/)
+**Portfolio project by Shreya Vyas** · [Live Demo →]([https://shreya-vyas.github.io/FundingAI/](https://shreya-vyas.github.io/BIDS/))
 
 ---
 
