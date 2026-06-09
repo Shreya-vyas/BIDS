@@ -1,0 +1,54 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Also redeploy when the scraper commits fresh data
+  workflow_run:
+    workflows: ["Hourly News Scraper"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deployment at a time
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Configure GitHub Pages ────────────────────────────
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # ── 3. Upload the whole repo root as the site ────────────
+      #       index.html, src/, data/, sql/, docs/ all go live
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'    # serve from repo root
+
+      # ── 4. Deploy ────────────────────────────────────────────
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      # ── 5. Print URL ─────────────────────────────────────────
+      - name: Print live URL
+        run: |
+          echo "### Deployed!" >> $GITHUB_STEP_SUMMARY
+          echo "Live at: ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY

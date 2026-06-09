@@ -1,0 +1,68 @@
+name: Hourly News Scraper
+
+on:
+  schedule:
+    # Runs at the top of every hour (UTC)
+    - cron: '0 * * * *'
+  # Allow manual trigger from GitHub Actions UI
+  workflow_dispatch:
+
+permissions:
+  contents: write   # needed to commit live-feed.js back to the repo
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ── 2. Set up Node.js ────────────────────────────────────
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # ── 3. Run the scraper ───────────────────────────────────
+      - name: Run AI news scraper
+        run: node scripts/scraper.mjs
+        timeout-minutes: 5
+
+      # ── 4. Check if live-feed.js changed ─────────────────────
+      - name: Check for changes
+        id: check
+        run: |
+          git diff --quiet data/live-feed.js || echo "changed=true" >> $GITHUB_OUTPUT
+
+      # ── 5. Commit & push if changed ──────────────────────────
+      - name: Commit updated live-feed.js
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/live-feed.js
+          git commit -m "chore: hourly news feed update $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
+
+      # ── 6. Summary ───────────────────────────────────────────
+      - name: Print summary
+        run: |
+          echo "### Scrape result" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          ARTICLES=$(node -e "
+            import('./data/live-feed.js').then(m => {
+              const f = m.liveFeed;
+              console.log('Articles: ' + f.meta.totalArticles);
+              console.log('Scraped: ' + f.meta.scrapedAt);
+              const sc = f.meta.signalCounts;
+              console.log('FUNDING=' + sc.FUNDING + ' HIRING=' + sc.HIRING + ' PRODUCT=' + sc.PRODUCT + ' RISK=' + sc.RISK);
+              const top = (f.meta.mentionCounts || []).slice(0,5).map(([k,v]) => k+'('+v+')').join(', ');
+              console.log('Top mentions: ' + top);
+            });
+          " 2>/dev/null || echo "Could not parse output")
+          echo "$ARTICLES" >> $GITHUB_STEP_SUMMARY

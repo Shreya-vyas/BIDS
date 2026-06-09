@@ -1,0 +1,13 @@
+company_id,company_name,industry,stage,hq,current_ai_jobs,avg_jobs_last_6_months,hiring_momentum,revenue_growth_pct,ai_hiring_growth_pct,over_hiring_gap_pct,funding_total_millions,success_probability_pct,layoff_risk_pct,ipo_readiness_pct,health
+openai,OpenAI,Foundation Models,Late Stage,"San Francisco, CA",342,271,1.26,180,220,40,11300,98.6,2,89.5,Expansion
+anthropic,Anthropic,Foundation Models,Late Stage,"San Francisco, CA",286,224,1.28,160,190,30,7300,98.3,2,84.8,Expansion
+databricks,Databricks,Data Platforms,Pre-IPO,"San Francisco, CA",251,234,1.07,70,90,20,4000,96.7,2,85.1,Stable
+huggingface,Hugging Face,Developer Platforms,Growth,"New York, NY",118,93,1.27,95,130,35,395,96.3,2,76.5,Expansion
+perplexity,Perplexity,AI Search,Growth,"San Francisco, CA",132,91,1.45,145,210,65,665,97.8,2,78.5,Expansion
+cohere,Cohere,Enterprise AI,Growth,"Toronto, Canada",126,111,1.14,105,150,45,935,96,2,74.8,Stable
+mistral,Mistral AI,Foundation Models,Growth,"Paris, France",103,79,1.3,125,175,50,1160,97,2,74.7,Expansion
+scale,Scale AI,Data Platforms,Late Stage,"San Francisco, CA",141,168,0.84,55,64,9,1600,93.2,14.6,74.1,Stable
+adept,Adept,AI Agents,Venture,"San Francisco, CA",18,39,0.46,35,-22,-57,415,76,66.8,42,Contraction
+runway,Runway,Generative Media,Growth,"New York, NY",72,62,1.16,90,118,28,545,95.1,2,69.5,Stable
+cursor,Cursor,Developer Platforms,Growth,"San Francisco, CA",64,38,1.68,170,260,90,252,98.3,2,80.4,Expansion
+sierra,Sierra,Enterprise AI,Growth,"San Francisco, CA",78,51,1.53,130,205,75,285,97.4,2,74.2,Expansion

@@ -1,0 +1,11 @@
+{
+  "name": "ai-talent-growth-intelligence",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Executive analytics platform connecting AI hiring behavior to funding, growth, skill premiums, startup success, and layoff risk.",
+  "scripts": {
+    "start": "node server.mjs",
+    "export:marts": "node scripts/export_marts.mjs"
+  }
+}

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Explore AI hiring trends, funding signals, skill premiums, layoff risk, and startup success probability across 22 leading AI companies. A portfolio analytics project by Shreya.">
+    <meta property="og:title" content="AI Talent & Company Growth Intelligence Platform">
+    <meta property="og:description" content="Executive workforce intelligence dashboard — AI hiring, funding signals, geo intelligence, and ML-powered startup scoring.">
+    <meta property="og:type" content="website">
+    <title>AI Talent & Company Growth Intelligence Platform</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+    <link rel="stylesheet" href="./src/styles.css">
+  </head>
+  <body>
+
+    <!-- Tooltip overlay (shared) -->
+    <div id="tooltip" class="tooltip" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <p class="eyebrow">Executive Workforce Intelligence</p>
+        <h1>AI Talent &amp; Growth Intelligence</h1>
+        <p class="lede">Analyze whether AI hiring behavior predicts funding, revenue expansion, IPO readiness, product growth, market leadership, and layoff risk across 22 leading AI companies.</p>
+        <div class="header-tags">
+          <span class="tag">22 Companies</span>
+          <span class="tag">14 Markets</span>
+          <span class="tag">42-Month Window</span>
+          <span class="tag">ML Scored</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="themeToggle" class="button icon-btn" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+        <button id="exportBtn" class="button secondary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export CSV
+        </button>
+        <a class="button secondary" href="./docs/project_blueprint.md" target="_blank">Blueprint</a>
+        <a class="button primary" href="./sql/analytics_queries.sql" target="_blank">SQL</a>
+      </div>
+    </header>
+
+    <!-- Live News Ticker -->
+    <div id="ticker" class="ticker" aria-label="Live news ticker" role="marquee">
+      <span class="ticker-label">🔴 LIVE</span>
+      <div class="ticker-track">
+        <div id="tickerInner" class="ticker-inner"></div>
+      </div>
+    </div>
+
+    <main>
+      <section class="control-band" aria-label="Dashboard controls">
+        <div class="filter">
+          <label for="search">Search</label>
+          <input id="search" type="search" placeholder="Company, city, or skill…" autocomplete="off">
+        </div>
+        <div class="filter">
+          <label for="industry">Industry</label>
+          <select id="industry"></select>
+        </div>
+        <div class="filter">
+          <label for="stage">Stage</label>
+          <select id="stage"></select>
+        </div>
+        <div class="filter compact">
+          <label for="risk">Min success</label>
+          <input id="risk" type="range" min="0" max="95" value="0">
+          <span id="riskLabel">0%</span>
+        </div>
+      </section>
+
+      <nav class="tabs" aria-label="Dashboards" id="tabs"></nav>
+
+      <section id="kpis" class="kpi-grid" aria-label="Executive KPIs"></section>
+      <section id="dashboard" class="dashboard" aria-live="polite"></section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-left">
+        <strong>AI Talent Intelligence Platform</strong>
+        <span>Portfolio project · Synthetic data layer · Built by Shreya</span>
+      </div>
+      <div class="footer-stack">
+        <span class="stack-tag">Vanilla JS</span>
+        <span class="stack-tag">Chart.js</span>
+        <span class="stack-tag">SVG</span>
+        <span class="stack-tag">CSS Grid</span>
+        <span class="stack-tag">SQL</span>
+      </div>
+      <div class="footer-right">
+        <span>Designed for extension with live APIs: Greenhouse, Crunchbase, SEC EDGAR, YC, Snowflake, Tableau</span>
+      </div>
+    </footer>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>

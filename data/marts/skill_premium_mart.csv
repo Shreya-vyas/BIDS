@@ -1,0 +1,13 @@
+skill,skill_family,avg_salary,salary_p25,salary_p75,demand_index
+LLMOps,Model Operations,230000,198000,268000,94
+RAG,Applied GenAI,220000,188000,255000,91
+GenAI,Applied GenAI,210000,180000,244000,88
+Evaluation Systems,AI Quality,224000,190000,262000,86
+Agentic AI,Applied GenAI,228000,194000,270000,84
+AI Governance,Risk,205000,170000,238000,78
+Vector Databases,Data Platforms,192000,160000,226000,76
+Fine Tuning,Model Development,198000,166000,230000,72
+MLOps,Model Operations,186000,152000,218000,75
+SQL,Analytics Core,135000,108000,166000,69
+Tableau,BI,120000,97000,148000,47
+Power BI,BI,123000,99000,151000,49
